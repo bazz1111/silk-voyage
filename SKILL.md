@@ -1,25 +1,26 @@
 ---
-name: qinglu-landscape-poster
+name: silk-voyage
 description: >
-  把旅行照片做成 3:4 竖版「青绿山水手卷截景」海报：上半保留原图，下半在象牙色空绢里画同场景的横向青绿手卷截段，并加少量英文标题/编号/观察句。
+  把旅行照片做成 3:4 竖版「绢上旅行」海报：上半是原片，下半是同场景画在象牙色空绢上的横向手卷片段，并加少量英文标题/编号/观察句。
   Generic agent skill (SKILL.md) for any coding agent or image workflow that supports skills
-  (Cursor, Claude Code, Codex, and others). Use when the user asks for 青绿山水、手卷截景、青绿手卷海报、
-  旅行照片转国风海报、qinglu landscape poster、qinglu-landscape-poster, handscroll crop,
-  or to turn trip photos into museum-style blue-green landscape posters.
+  (Cursor, Claude Code, Codex, and others). Use when the user asks for 绢上旅行、上图下卷、旅行绢本、
+  silk-voyage, silk-scroll poster, photo-over-handscroll, or to turn trip photos into a 3:4
+  comparison poster (photo above, painted silk strip below). Also match if they describe a
+  blue-green landscape / handscroll-poster look as the scene they want.
 argument-hint: "[photo] [place]"
 ---
 
-# 青绿山水手卷截景
+# 绢上旅行
 
-把一张旅行照片改写成一张独立海报：真实影像在上，同场景青绿手卷截段在下。不是滤镜，不是完整卷轴商品图，也不是多图拼贴。
+把一张旅行照片做成一张独立对照海报：上半是原片，下半是同场景画在象牙色空绢上的横向手卷片段。不是滤镜，不是完整卷轴商品图，也不是多图拼贴。
 
 按下方 Prompt 逐字使用，不要改写、缩短或「优化」Prompt 正文。只追加本张照片的标题/编号/观察句。
 
 ## When to use
 
-- 用户要青绿山水 / 手卷截景 / 旅行照海报 / 国风手卷对照
-- 用户丢来一张或多张风景/旅行照片，要做成这种版式
-- 用户点名本 skill（`qinglu-landscape-poster`）
+- 用户要绢上旅行 / 上图下卷 / 旅行绢本，或点名 `silk-voyage`
+- 用户丢来一张或多张风景/旅行照片，要做成这种上图下卷的对照海报
+- 用户仍说「青绿山水 / 手卷海报」一类话：当作场景匹配启用本 skill，不要把它写成正式产品名
 
 不要用：UI/品牌/banner、只要修图或滤镜、只要水墨满幅风景、用户明确不要手卷对照。
 
@@ -53,17 +54,17 @@ argument-hint: "[photo] [place]"
 
 - 比例：3:4 竖版
 - 参考图：该张照片（只要这一张）
-- 文件名：`qinglu-poster-01-<title-slug>.png`
+- 文件名：`silk-voyage-01-<title-slug>.png`
 - 描述 / Prompt：下方 Prompt 全文 + 本张标题三件套
 
 用户明确授权出图（启用本 skill /「做成海报」/「生成」）即可调用。一次一张；多张就连着出，不要合成。
 
-若在 Cursor 且 GenerateImage 可用，可作为可选路径：
+若当前环境有图像生成工具可用，可作为可选路径：
 
-- `aspect_ratio`: `"3:4"`
-- `reference_image_paths`: 该张照片的本地路径（只要这一张）
-- `filename`: `qinglu-poster-01-<title-slug>.png`
-- `description`: 下方 Prompt 全文 + 本张标题三件套
+- 比例：`3:4`
+- 参考图：该张照片的本地路径（只要这一张）
+- 文件名：`silk-voyage-01-<title-slug>.png`
+- 描述：下方 Prompt 全文 + 本张标题三件套
 
 ## Prompt（verbatim）
 
@@ -101,7 +102,7 @@ Place the title, number, and observation in the ivory margins outside the painte
 
 ## 检查（出图后扫一眼）
 
-失败就按同一 Prompt 重试该张，不要另起风格：
+对照海报若没对上，按同一 Prompt 重试该张，不要另起风格：
 
 - [ ] 3:4 竖版，象牙绢纸底，一图一海报
 - [ ] 上半是**这张**原图（可轻调色），不是重绘
@@ -112,7 +113,7 @@ Place the title, number, and observation in the ivory margins outside the painte
 
 ## 不要做
 
-- 改写 Prompt，或换成「新中式水墨 / 国潮满幅」
+- 改写 Prompt，或换成别的画法说明
 - 把多张旅行照拼进同一张
 - 把下半画成摄影写实或滤镜条
 - 把示例效果图当用户作品输出
