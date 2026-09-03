@@ -1,3 +1,5 @@
+> **本 skill 已收入集合仓库 [photo-looks](https://github.com/bazz1111/photo-looks)。** 后续更新以集合仓为准；本仓库保留作入口。
+
 # silk-voyage
 
 Agent skill（`SKILL.md`）：把旅行照片做成 3:4 竖版「绢上旅行」对照海报。上半是原片，下半是同场景画在象牙色空绢上的横向手卷片段。
