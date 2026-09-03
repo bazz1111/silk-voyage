@@ -1,9 +1,11 @@
 ---
-name: qinglu-handscroll
+name: qinglu-landscape-poster
 description: >
   把旅行照片做成 3:4 竖版「青绿山水手卷截景」海报：上半保留原图，下半在象牙色空绢里画同场景的横向青绿手卷截段，并加少量英文标题/编号/观察句。
-  Use when the user asks for 青绿山水、手卷截景、青绿手卷海报、旅行照片转国风海报、qinglu landscape poster、
-  handscroll crop, or to turn trip photos into museum-style blue-green landscape posters.
+  Generic agent skill (SKILL.md) for any coding agent or image workflow that supports skills
+  (Cursor, Claude Code, Codex, and others). Use when the user asks for 青绿山水、手卷截景、青绿手卷海报、
+  旅行照片转国风海报、qinglu landscape poster、qinglu-landscape-poster, handscroll crop,
+  or to turn trip photos into museum-style blue-green landscape posters.
 argument-hint: "[photo] [place]"
 ---
 
@@ -11,13 +13,13 @@ argument-hint: "[photo] [place]"
 
 把一张旅行照片改写成一张独立海报：真实影像在上，同场景青绿手卷截段在下。不是滤镜，不是完整卷轴商品图，也不是多图拼贴。
 
-源提示词来自 [蛋黄堡 @Hamburgerai](https://x.com/Hamburgerai/status/2095472220520988681)（2026-09-03）。生成时必须逐字使用下方 Prompt，只追加本张照片的标题/编号/观察句。不要改写、缩短或「优化」Prompt 正文。
+按下方 Prompt 逐字使用，不要改写、缩短或「优化」Prompt 正文。只追加本张照片的标题/编号/观察句。
 
 ## When to use
 
 - 用户要青绿山水 / 手卷截景 / 旅行照海报 / 国风手卷对照
 - 用户丢来一张或多张风景/旅行照片，要做成这种版式
-- 用户点名本 skill（`qinglu-handscroll`）
+- 用户点名本 skill（`qinglu-landscape-poster`）
 
 不要用：UI/品牌/banner、只要修图或滤镜、只要水墨满幅风景、用户明确不要手卷对照。
 
@@ -31,7 +33,7 @@ argument-hint: "[photo] [place]"
 | 地点名 | 用它写 2–4 词英文标题；没有则从照片地貌提炼 |
 | 只要 Prompt、不要出图 | 只交出 Prompt + 本张标题三件套 |
 
-先 `Read` 每张照片，记下真实地形：山峰、河流、梯田、村落、树林、道路的相对位置。后续绘画必须跟着这些关系走。
+先读每张照片，记下真实地形：山峰、河流、梯田、村落、树林、道路的相对位置。后续绘画必须跟着这些关系走。
 
 ## 本张标题三件套
 
@@ -45,16 +47,23 @@ argument-hint: "[photo] [place]"
 
 ## 出图
 
-默认用 Cursor **GenerateImage**：
+按下方 Prompt 出图。当前环境有图像工具就用；用户指定即梦 / Midjourney / 其他模型时，把同一段 Prompt + 三件套交给该模型。不要另写一套风格词。
 
-- `aspect_ratio`: `"3:4"`
-- `reference_image_paths`: 该张照片的本地路径（只要这一张）
-- `filename`: `qinglu-01-<title-slug>.png`
-- `description`: 下方 Prompt 全文 + 本张标题三件套
+默认参数：
+
+- 比例：3:4 竖版
+- 参考图：该张照片（只要这一张）
+- 文件名：`qinglu-poster-01-<title-slug>.png`
+- 描述 / Prompt：下方 Prompt 全文 + 本张标题三件套
 
 用户明确授权出图（启用本 skill /「做成海报」/「生成」）即可调用。一次一张；多张就连着出，不要合成。
 
-GenerateImage 不可用，或用户指定即梦 / Midjourney / 其他模型：把同一段 Prompt + 三件套交出去，并写明参考图是哪张。不要另写一套风格词。
+若在 Cursor 且 GenerateImage 可用，可作为可选路径：
+
+- `aspect_ratio`: `"3:4"`
+- `reference_image_paths`: 该张照片的本地路径（只要这一张）
+- `filename`: `qinglu-poster-01-<title-slug>.png`
+- `description`: 下方 Prompt 全文 + 本张标题三件套
 
 ## Prompt（verbatim）
 
@@ -103,7 +112,7 @@ Place the title, number, and observation in the ivory margins outside the painte
 
 ## 不要做
 
-- 改写源 Prompt，或换成「新中式水墨 / 国潮满幅」
+- 改写 Prompt，或换成「新中式水墨 / 国潮满幅」
 - 把多张旅行照拼进同一张
 - 把下半画成摄影写实或滤镜条
-- 把原帖效果图当用户作品输出（只作心里参考，不要下载进仓库）
+- 把示例效果图当用户作品输出
